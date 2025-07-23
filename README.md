@@ -1,2 +1,1 @@
-# ssms-customer-portal
-ssms-customer-portal
+# ssms-frontend
