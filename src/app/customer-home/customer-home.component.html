@@ -1,0 +1,76 @@
+<div class="container my-4">
+  <h1 class="text-center mb-4">Products</h1>
+
+  <!-- Filter Section -->
+  <div class="row mb-4">
+    <!-- Search by Name -->
+    <div class="col-md-6 mb-2">
+      <input type="text" class="form-control" placeholder="Search by product name" [(ngModel)]="searchName" (input)="applyFilters()">
+    </div>
+    <!-- Category Filter -->
+    <div class="col-md-6 mb-2">
+      <select class="form-control" [(ngModel)]="selectedCategory" (change)="applyFilters()">
+        <option value="">All Categories</option>
+        <option *ngFor="let category of categories" [ngValue]="category">{{ category?.name }}</option>
+      </select>
+    </div>
+  </div>
+
+  <!-- Products Grid with Pagination -->
+  <div class="row">
+    <div *ngFor="let product of filteredProducts | paginate: { itemsPerPage: 12, currentPage: p }" class="col-md-3 mb-4 d-flex align-items-stretch">
+      <div class="card w-100">
+        <img [src]="product.imageUrl" class="card-img-top" alt="{{ product.name }}">
+        <div class="card-body d-flex flex-column">
+          <h5 class="card-title">{{ product.name }}</h5>
+          <p class="card-text">Category: {{ product.category.name }}</p>
+          <p class="card-text font-weight-bold">{{ product.sellingPrice | currency }}</p>
+          <button class="btn btn-primary mt-auto" (click)="openBuyModal(product)">Buy</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Pagination Controls -->
+  <div class="d-flex justify-content-center">
+    <pagination-controls (pageChange)="p = $event"></pagination-controls>
+  </div>
+  
+  <!-- If no products found -->
+  <div *ngIf="filteredProducts.length === 0" class="text-center">
+    <p>No products found.</p>
+  </div>
+</div>
+
+<!-- Modal for Product Details -->
+<div *ngIf="selectedProduct" class="modal show fade d-block" tabindex="-1" [ngStyle]="{'background-color': 'rgba(0,0,0,0.5)'}">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+         <h5 class="modal-title">{{ selectedProduct.name }}</h5>
+         <button type="button" class="close" (click)="closeBuyModal()">&times;</button>
+      </div>
+      <div class="modal-body">
+         <img [src]="selectedProduct.imageUrl" alt="{{ selectedProduct.name }}" class="img-fluid mb-3">
+         <p><strong>Category:</strong> {{ selectedProduct.category.name }}</p>
+         <p><strong>Price:</strong> {{ selectedProduct.sellingPrice | currency }}</p>
+         <!-- Size Selection (Mandatory) using sizeMap -->
+         <div class="form-group">
+            <label for="sizeSelect"><strong>Select Size:</strong></label>
+            <select id="sizeSelect" class="form-control" [(ngModel)]="selectedSize">
+              <option value="" disabled>Select size</option>
+            <ng-container *ngFor="let sizeEntry of selectedProduct.sizeMap | keyvalue">
+            <option *ngIf="sizeEntry.value > 0" [value]="sizeEntry.key">
+                {{ sizeEntry.key }} (Available: {{ sizeEntry.value }})
+            </option>
+            </ng-container>
+            </select>
+         </div>
+      </div>
+      <div class="modal-footer">
+         <button class="btn btn-success" (click)="orderViaWhatsApp(selectedProduct)">Order via WhatsApp</button>
+         <button class="btn btn-secondary" (click)="closeBuyModal()">Cancel</button>
+      </div>
+    </div>
+  </div>
+</div>
