@@ -11,5 +11,5 @@ import { FooterComponent } from "./components/shared/footer/footer.component";
   styleUrl: './app.component.css'
 })
 export class AppComponent {
-  title = 'ssms-front-end';
+  title = 'ssms-customer-portal';
 }
