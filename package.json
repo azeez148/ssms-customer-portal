@@ -1,5 +1,5 @@
 {
-  "name": "ssms-front-end",
+  "name": "ssms-customer-portal",
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
@@ -7,7 +7,7 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "serve:ssr:ssms-front-end": "node dist/ssms-front-end/server/server.mjs"
+    "serve:ssr:ssms-customer-portal": "node dist/ssms-customer-portal/server/server.mjs"
   },
   "private": true,
   "dependencies": {

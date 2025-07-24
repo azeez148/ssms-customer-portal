@@ -14,16 +14,16 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy();
   });
 
-  it(`should have the 'ssms-front-end' title`, () => {
+  it(`should have the 'ssms-customer-portal' title`, () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;
-    expect(app.title).toEqual('ssms-front-end');
+    expect(app.title).toEqual('ssms-customer-portal');
   });
 
   it('should render title', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('h1')?.textContent).toContain('Hello, ssms-front-end');
+    expect(compiled.querySelector('h1')?.textContent).toContain('Hello, ssms-customer-portal');
   });
 });

@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "ssms-front-end": {
+    "ssms-customer-portal": {
       "projectType": "application",
       "schematics": {},
       "root": "",
@@ -13,7 +13,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "outputPath": "dist/ssms-front-end",
+            "outputPath": "dist/ssms-customer-portal",
             "index": "src/index.html",
             "browser": "src/main.ts",
             "polyfills": [
@@ -31,7 +31,9 @@
               "src/styles.css",
               "node_modules/bootstrap/dist/css/bootstrap.min.css"
             ],
-            "scripts": [],
+            "scripts": [
+              "node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"
+            ],
             "server": "src/main.server.ts",
             "outputMode": "server",
             "ssr": {
@@ -66,10 +68,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "ssms-front-end:build:production"
+              "buildTarget": "ssms-customer-portal:build:production"
             },
             "development": {
-              "buildTarget": "ssms-front-end:build:development"
+              "buildTarget": "ssms-customer-portal:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -95,7 +97,9 @@
               "@angular/material/prebuilt-themes/azure-blue.css",
               "src/styles.css"
             ],
-            "scripts": []
+            "scripts": [
+              "node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"
+            ]
           }
         }
       }
