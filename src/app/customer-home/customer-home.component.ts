@@ -19,6 +19,8 @@ import { Category, Product } from './data/product-model';
 export class CustomerHomeComponent implements OnInit {
   products: Product[] = [];
   filteredProducts: Product[] = [];
+  newlyAddedProducts: Product[] = [];
+  specialOfferProducts: Product[] = [];
   categories: Category[] = [];
   searchName: string = '';
   selectedCategory: string = ''; // Changed to string to handle category name
@@ -34,6 +36,10 @@ export class CustomerHomeComponent implements OnInit {
   ngOnInit(): void {
     this.customerHomeService.getHomeData().subscribe(data => {
       this.products = data.products.filter(product => product.canListed === true);
+
+      // Populate newly added and special offer products
+      this.newlyAddedProducts = this.products.slice(0, 8);
+      this.specialOfferProducts = this.products.slice(8, 16);
 
       // Extract unique categories from the products
 const categoryMap = new Map<string, Category>();

@@ -1,45 +1,87 @@
-<div class="container my-4">
-  <h1 class="text-center mb-4">Products</h1>
-
-  <!-- Filter Section -->
-  <div class="row mb-4">
-    <!-- Search by Name -->
-    <div class="col-md-6 mb-2">
-      <input type="text" class="form-control" placeholder="Search by product name" [(ngModel)]="searchName" (input)="applyFilters()">
-    </div>
-    <!-- Category Filter -->
-    <div class="col-md-6 mb-2">
-      <select class="form-control" [(ngModel)]="selectedCategory" (ngModelChange)="applyFilters()">
-        <option value="">All Categories</option>
-        <option *ngFor="let category of categories" [value]="category.name">{{ category.name }}</option>
-      </select>
-    </div>
+<!-- Hero Section -->
+<div class="hero-section text-center text-white bg-dark py-5">
+  <div class="container">
+    <h1 class="display-4">Welcome to Our Sports Store</h1>
+    <p class="lead">Your one-stop shop for all your sporting needs.</p>
   </div>
+</div>
 
-  <!-- Products Grid with Pagination -->
-  <div class="row">
-    <div *ngFor="let product of filteredProducts | paginate: { itemsPerPage: 12, currentPage: p }" class="col-md-3 mb-4 d-flex align-items-stretch">
-      <div class="card w-100">
-        <img [src]="product.imageUrl" class="card-img-top" alt="{{ product.name }}">
-        <div class="card-body d-flex flex-column">
-          <h5 class="card-title">{{ product.name }}</h5>
-          <p class="card-text">Category: {{ product.category.name }}</p>
-          <p class="card-text font-weight-bold">{{ product.sellingPrice | currency }}</p>
-          <button class="btn btn-primary mt-auto" (click)="openBuyModal(product)">Buy</button>
+<div class="container my-4">
+  <!-- Newly Added Section -->
+  <section class="mb-5">
+    <h2 class="section-title mb-4">Newly Added</h2>
+    <div class="horizontal-scroll">
+      <div class="d-flex">
+        <div *ngFor="let product of newlyAddedProducts" class="card product-card-horizontal mr-3">
+          <img [src]="product.imageUrl" class="card-img-top" alt="{{ product.name }}">
+          <div class="card-body">
+            <h5 class="card-title">{{ product.name }}</h5>
+            <p class="card-text font-weight-bold">{{ product.sellingPrice | currency }}</p>
+            <button class="btn btn-primary btn-sm" (click)="openBuyModal(product)">Buy</button>
+          </div>
         </div>
       </div>
     </div>
-  </div>
+  </section>
 
-  <!-- Pagination Controls -->
-  <div class="d-flex justify-content-center">
-    <pagination-controls (pageChange)="p = $event"></pagination-controls>
-  </div>
-  
-  <!-- If no products found -->
-  <div *ngIf="filteredProducts.length === 0" class="text-center">
-    <p>No products found.</p>
-  </div>
+  <!-- Special Offers Section -->
+  <section class="mb-5">
+    <h2 class="section-title mb-4">Special Offers</h2>
+    <div class="horizontal-scroll">
+      <div class="d-flex">
+        <div *ngFor="let product of specialOfferProducts" class="card product-card-horizontal mr-3">
+          <img [src]="product.imageUrl" class="card-img-top" alt="{{ product.name }}">
+          <div class="card-body">
+            <h5 class="card-title">{{ product.name }}</h5>
+            <p class="card-text font-weight-bold">{{ product.sellingPrice | currency }}</p>
+            <button class="btn btn-primary btn-sm" (click)="openBuyModal(product)">Buy</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- All Products Section -->
+  <section>
+    <h2 class="section-title mb-4">All Products</h2>
+    <!-- Filter Section -->
+    <div class="row mb-4">
+      <div class="col-md-6 mb-2">
+        <input type="text" class="form-control" placeholder="Search by product name" [(ngModel)]="searchName" (input)="applyFilters()">
+      </div>
+      <div class="col-md-6 mb-2">
+        <select class="form-control" [(ngModel)]="selectedCategory" (ngModelChange)="applyFilters()">
+          <option value="">All Categories</option>
+          <option *ngFor="let category of categories" [value]="category.name">{{ category.name }}</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- Products Grid with Pagination -->
+    <div class="row">
+      <div *ngFor="let product of filteredProducts | paginate: { itemsPerPage: 12, currentPage: p }" class="col-md-3 mb-4 d-flex align-items-stretch">
+        <div class="card w-100">
+          <img [src]="product.imageUrl" class="card-img-top" alt="{{ product.name }}">
+          <div class="card-body d-flex flex-column">
+            <h5 class="card-title">{{ product.name }}</h5>
+            <p class="card-text">Category: {{ product.category.name }}</p>
+            <p class="card-text font-weight-bold">{{ product.sellingPrice | currency }}</p>
+            <button class="btn btn-primary mt-auto" (click)="openBuyModal(product)">Buy</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Pagination Controls -->
+    <div class="d-flex justify-content-center">
+      <pagination-controls (pageChange)="p = $event"></pagination-controls>
+    </div>
+
+    <!-- If no products found -->
+    <div *ngIf="filteredProducts.length === 0" class="text-center">
+      <p>No products found.</p>
+    </div>
+  </section>
 </div>
 
 <!-- Modal for Product Details -->
@@ -56,17 +98,17 @@
          <p><strong>Price:</strong> {{ selectedProduct.sellingPrice | currency }}</p>
          <!-- Size Selection (Mandatory) using sizeMap -->
          <div class="form-group">
-  <label for="sizeSelect"><strong>Select Size:</strong></label>
-  <select id="sizeSelect" class="form-control" [(ngModel)]="selectedSize">
-    <option value="" disabled>Select size</option>
-    <option 
-      *ngFor="let sizeEntry of selectedProduct.sizeMap" 
-      [value]="sizeEntry.size" 
-      [disabled]="sizeEntry.quantity === 0">
-      {{ sizeEntry.size }} (Available: {{ sizeEntry.quantity }})
-    </option>
-  </select>
-</div>
+          <label for="sizeSelect"><strong>Select Size:</strong></label>
+          <select id="sizeSelect" class="form-control" [(ngModel)]="selectedSize">
+            <option value="" disabled>Select size</option>
+            <option
+              *ngFor="let sizeEntry of selectedProduct.sizeMap"
+              [value]="sizeEntry.size"
+              [disabled]="sizeEntry.quantity === 0">
+              {{ sizeEntry.size }} (Available: {{ sizeEntry.quantity }})
+            </option>
+          </select>
+        </div>
       </div>
       <div class="modal-footer">
          <button class="btn btn-success" (click)="orderViaWhatsApp(selectedProduct)">Order via WhatsApp</button>
