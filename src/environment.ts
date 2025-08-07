@@ -1,4 +1,4 @@
 export const environment = {
   production: false,
-  apiUrl: 'https://65cc12a430a1.ngrok-free.app'
+  apiUrl: 'https://ssms-backend-fastapi.onrender.com'
 };

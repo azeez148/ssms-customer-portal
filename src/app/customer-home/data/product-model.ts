@@ -1,7 +1,14 @@
+
+
 export interface Category {
-  id: number;
-  name: string;
-  description: string;
+    id: number;
+    name: string;
+    description: string;
+  }
+
+export interface ProductSize {
+  size: string;
+  quantity: number;
 }
 
 export interface Product {
@@ -9,7 +16,8 @@ export interface Product {
   name: string;
   description: string;
   category: Category;
-  sizeMap: { [key: string]: number }; // e.g., {"S": 10, "M": 5, "L": 3}
+  categoryId: number; // Added to match the backend structure
+  sizeMap: ProductSize[];  // Changed from object to array
   unitPrice: number;
   sellingPrice: number;
   imageUrl?: string; // Optional field for product image URL
@@ -22,7 +30,6 @@ export interface Quantities {
   sizes?: string[];
   [key: string]: string | number | string[] | undefined; // This allows dynamic keys to be added
 }
-
 
 export interface CustomerHome {
   products: Product[];
