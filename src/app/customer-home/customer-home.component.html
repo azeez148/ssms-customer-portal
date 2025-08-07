@@ -9,9 +9,9 @@
     </div>
     <!-- Category Filter -->
     <div class="col-md-6 mb-2">
-      <select class="form-control" [(ngModel)]="selectedCategory" (change)="applyFilters()">
+      <select class="form-control" [(ngModel)]="selectedCategory" (ngModelChange)="applyFilters()">
         <option value="">All Categories</option>
-        <option *ngFor="let category of categories" [ngValue]="category">{{ category?.name }}</option>
+        <option *ngFor="let category of categories" [value]="category.name">{{ category.name }}</option>
       </select>
     </div>
   </div>
@@ -56,16 +56,17 @@
          <p><strong>Price:</strong> {{ selectedProduct.sellingPrice | currency }}</p>
          <!-- Size Selection (Mandatory) using sizeMap -->
          <div class="form-group">
-            <label for="sizeSelect"><strong>Select Size:</strong></label>
-            <select id="sizeSelect" class="form-control" [(ngModel)]="selectedSize">
-              <option value="" disabled>Select size</option>
-            <ng-container *ngFor="let sizeEntry of selectedProduct.sizeMap | keyvalue">
-            <option *ngIf="sizeEntry.value > 0" [value]="sizeEntry.key">
-                {{ sizeEntry.key }} (Available: {{ sizeEntry.value }})
-            </option>
-            </ng-container>
-            </select>
-         </div>
+  <label for="sizeSelect"><strong>Select Size:</strong></label>
+  <select id="sizeSelect" class="form-control" [(ngModel)]="selectedSize">
+    <option value="" disabled>Select size</option>
+    <option 
+      *ngFor="let sizeEntry of selectedProduct.sizeMap" 
+      [value]="sizeEntry.size" 
+      [disabled]="sizeEntry.quantity === 0">
+      {{ sizeEntry.size }} (Available: {{ sizeEntry.quantity }})
+    </option>
+  </select>
+</div>
       </div>
       <div class="modal-footer">
          <button class="btn btn-success" (click)="orderViaWhatsApp(selectedProduct)">Order via WhatsApp</button>
