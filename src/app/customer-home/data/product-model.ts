@@ -26,6 +26,7 @@ export interface Product {
   offerId: string; // Nullable to match the backend structure
   discountedPrice: number;
   offerPrice: number;
+  offerName: string; // Added to include offer name
 }
 
 export interface Quantities {

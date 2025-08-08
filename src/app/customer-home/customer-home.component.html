@@ -18,7 +18,8 @@
             <h5 class="card-title">{{ product.name }}</h5>
             <div *ngIf="product.offerId">
               <p class="card-text text-danger">
-                <span class="badge badge-success">{{ product.offerId }}</span>
+               <span>{{ product.offerName }}</span>
+
               </p>
               <p class="card-text font-weight-bold">
                 <del>{{ product.sellingPrice | currency }}</del>
@@ -49,7 +50,7 @@
             <h5 class="card-title">{{ product.name }}</h5>
             <div *ngIf="product.offerId">
               <p class="card-text text-danger">
-                <span class="badge badge-success">{{ product.offerId }}</span>
+                <span>{{ product.offerName }}</span>
               </p>
               <p class="card-text font-weight-bold">
                 <del>{{ product.sellingPrice | currency }}</del>
@@ -95,7 +96,7 @@
             <p class="card-text">Category: {{ product.category.name }}</p>
             <div *ngIf="product.offerId">
               <p class="card-text text-danger">
-                <span class="badge badge-success">{{ product.offerId }}</span>
+                <span>{{ product.offerName }}</span>
               </p>
               <p class="card-text font-weight-bold">
                 <del>{{ product.sellingPrice | currency }}</del>
@@ -139,7 +140,7 @@
          <p><strong>Category:</strong> {{ selectedProduct.category.name }}</p>
          <div *ngIf="selectedProduct.offerId">
            <p>
-             <span class="badge badge-success">{{ selectedProduct.offerId }}</span>
+             <span>{{ selectedProduct.offerName }}</span>
            </p>
            <p>
              <strong>Price:</strong>
