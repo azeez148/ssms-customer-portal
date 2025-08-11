@@ -98,7 +98,18 @@ const categoryMap = new Map<string, Category>();
       alert('Please select a size before ordering.');
       return;
     }
-    const message = encodeURIComponent(`Hello, I would like to order ${product.name} with selected size ${this.selectedSize} at ${product.sellingPrice}.`);
+
+    let message;
+    if (product.offerId) {
+      message = encodeURIComponent(
+        `Hello, I would like to order ${product.name} with selected size ${this.selectedSize} at the discounted price of ${product.discountedPrice}. Offer: ${product.offerId}`
+      );
+    } else {
+      message = encodeURIComponent(
+        `Hello, I would like to order ${product.name} with selected size ${this.selectedSize} at ${product.sellingPrice}.`
+      );
+    }
+
     // Replace the phone number with your WhatsApp number
     const url = `https://api.whatsapp.com/send?phone=+918089325733&text=${message}`;
     window.open(url, '_blank');

@@ -23,6 +23,10 @@ export interface Product {
   imageUrl?: string; // Optional field for product image URL
   isActive: boolean;
   canListed: boolean;
+  offerId: string; // Nullable to match the backend structure
+  discountedPrice: number;
+  offerPrice: number;
+  offerName: string; // Added to include offer name
 }
 
 export interface Quantities {

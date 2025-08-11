@@ -16,7 +16,22 @@
           <img [src]="product.imageUrl" class="card-img-top" alt="{{ product.name }}">
           <div class="card-body">
             <h5 class="card-title">{{ product.name }}</h5>
-            <p class="card-text font-weight-bold">{{ product.sellingPrice | currency }}</p>
+            <div *ngIf="product.offerId">
+              <p class="card-text text-danger">
+               <span>{{ product.offerName }}</span>
+
+              </p>
+              <p class="card-text font-weight-bold">
+                <del>{{ product.sellingPrice | currency }}</del>
+                <strong>{{ product.discountedPrice | currency }}</strong>
+              </p>
+              <p class="card-text">
+                <small class="text-muted">Offer Price: {{ product.offerPrice | currency }}</small>
+              </p>
+            </div>
+            <p *ngIf="!product.offerId" class="card-text font-weight-bold">
+              {{ product.sellingPrice | currency }}
+            </p>
             <button class="btn btn-primary btn-sm" (click)="openBuyModal(product)">Buy</button>
           </div>
         </div>
@@ -33,7 +48,21 @@
           <img [src]="product.imageUrl" class="card-img-top" alt="{{ product.name }}">
           <div class="card-body">
             <h5 class="card-title">{{ product.name }}</h5>
-            <p class="card-text font-weight-bold">{{ product.sellingPrice | currency }}</p>
+            <div *ngIf="product.offerId">
+              <p class="card-text text-danger">
+                <span>{{ product.offerName }}</span>
+              </p>
+              <p class="card-text font-weight-bold">
+                <del>{{ product.sellingPrice | currency }}</del>
+                <strong>{{ product.discountedPrice | currency }}</strong>
+              </p>
+              <p class="card-text">
+                <small class="text-muted">Offer Price: {{ product.offerPrice | currency }}</small>
+              </p>
+            </div>
+            <p *ngIf="!product.offerId" class="card-text font-weight-bold">
+              {{ product.sellingPrice | currency }}
+            </p>
             <button class="btn btn-primary btn-sm" (click)="openBuyModal(product)">Buy</button>
           </div>
         </div>
@@ -65,7 +94,21 @@
           <div class="card-body d-flex flex-column">
             <h5 class="card-title">{{ product.name }}</h5>
             <p class="card-text">Category: {{ product.category.name }}</p>
-            <p class="card-text font-weight-bold">{{ product.sellingPrice | currency }}</p>
+            <div *ngIf="product.offerId">
+              <p class="card-text text-danger">
+                <span>{{ product.offerName }}</span>
+              </p>
+              <p class="card-text font-weight-bold">
+                <del>{{ product.sellingPrice | currency }}</del>
+                <strong>{{ product.discountedPrice | currency }}</strong>
+              </p>
+              <p class="card-text">
+                <small class="text-muted">Offer Price: {{ product.offerPrice | currency }}</small>
+              </p>
+            </div>
+            <p *ngIf="!product.offerId" class="card-text font-weight-bold">
+              {{ product.sellingPrice | currency }}
+            </p>
             <button class="btn btn-primary mt-auto" (click)="openBuyModal(product)">Buy</button>
           </div>
         </div>
@@ -95,7 +138,22 @@
       <div class="modal-body">
          <img [src]="selectedProduct.imageUrl" alt="{{ selectedProduct.name }}" class="img-fluid mb-3">
          <p><strong>Category:</strong> {{ selectedProduct.category.name }}</p>
-         <p><strong>Price:</strong> {{ selectedProduct.sellingPrice | currency }}</p>
+         <div *ngIf="selectedProduct.offerId">
+           <p>
+             <span>{{ selectedProduct.offerName }}</span>
+           </p>
+           <p>
+             <strong>Price:</strong>
+             <del>{{ selectedProduct.sellingPrice | currency }}</del>
+             <strong>{{ selectedProduct.discountedPrice | currency }}</strong>
+           </p>
+           <p>
+             <small class="text-muted">Offer Price: {{ selectedProduct.offerPrice | currency }}</small>
+           </p>
+         </div>
+         <p *ngIf="!selectedProduct.offerId">
+           <strong>Price:</strong> {{ selectedProduct.sellingPrice | currency }}
+         </p>
          <!-- Size Selection (Mandatory) using sizeMap -->
          <div class="form-group">
           <label for="sizeSelect"><strong>Select Size:</strong></label>
