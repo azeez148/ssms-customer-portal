@@ -99,9 +99,18 @@ const categoryMap = new Map<string, Category>();
       return;
     }
 
-    let messageBody = `Hello, I would like to order ${product.name} with selected size ${this.selectedSize} at ${product.sellingPrice}.`;
+    let message;
+    if (product.offerId) {
+      message = encodeURIComponent(
+        `Hello, I would like to order ${product.name} with selected size ${this.selectedSize} at the discounted price of ${product.discountedPrice}. Offer: ${product.offerId}`
+      );
+    } else {
+      message = encodeURIComponent(
+        `Hello, I would like to order ${product.name} with selected size ${this.selectedSize} at ${product.sellingPrice}.`
+      );
+    }
 
-    const message = encodeURIComponent(messageBody);
+    // Replace the phone number with your WhatsApp number
     const url = `https://api.whatsapp.com/send?phone=+918089325733&text=${message}`;
     window.open(url, '_blank');
     this.closeBuyModal();
