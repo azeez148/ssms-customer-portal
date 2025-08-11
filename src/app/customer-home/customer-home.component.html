@@ -75,13 +75,19 @@
     <h2 class="section-title mb-4">All Products</h2>
     <!-- Filter Section -->
     <div class="row mb-4">
-      <div class="col-md-6 mb-2">
+      <div class="col-md-4 mb-2">
         <input type="text" class="form-control" placeholder="Search by product name" [(ngModel)]="searchName" (input)="applyFilters()">
       </div>
-      <div class="col-md-6 mb-2">
+      <div class="col-md-4 mb-2">
         <select class="form-control" [(ngModel)]="selectedCategory" (ngModelChange)="applyFilters()">
           <option value="">All Categories</option>
           <option *ngFor="let category of categories" [value]="category.name">{{ category.name }}</option>
+        </select>
+      </div>
+      <div class="col-md-4 mb-2">
+        <select class="form-control" [(ngModel)]="selectedSize" (ngModelChange)="applyFilters()">
+          <option value="">All Sizes</option>
+          <option *ngFor="let size of sizes" [value]="size">{{ size }}</option>
         </select>
       </div>
     </div>
@@ -157,7 +163,7 @@
          <!-- Size Selection (Mandatory) using sizeMap -->
          <div class="form-group">
           <label for="sizeSelect"><strong>Select Size:</strong></label>
-          <select id="sizeSelect" class="form-control" [(ngModel)]="selectedSize">
+          <select id="sizeSelect" class="form-control" [(ngModel)]="selectedSizeInModal">
             <option value="" disabled>Select size</option>
             <option
               *ngFor="let sizeEntry of selectedProduct.sizeMap"
