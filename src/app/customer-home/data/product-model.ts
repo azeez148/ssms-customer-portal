@@ -27,6 +27,7 @@ export interface Product {
   discountedPrice: number;
   offerPrice: number;
   offerName: string; // Added to include offer name
+  created_date: Date;
 }
 
 export interface Quantities {
