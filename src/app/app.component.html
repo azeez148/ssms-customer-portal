@@ -1,5 +1,7 @@
 <app-navbar></app-navbar>
 
+<app-cart *ngIf="isCartVisible$ | async"></app-cart>
+
 <router-outlet></router-outlet>
 
 <app-footer></app-footer>

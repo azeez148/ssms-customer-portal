@@ -4,6 +4,8 @@ import { CommonModule } from '@angular/common';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { CustomerHomeService } from './services/customer-view.service';
 import { Category, Product } from './data/product-model';
+import { CartService } from '../cart/cart.service';
+import { CartItem } from '../cart/cart.model';
 
 @Component({
   selector: 'app-customer-home',
@@ -33,7 +35,10 @@ export class CustomerHomeComponent implements OnInit {
   // Renamed for clarity, this is for the size selection in the modal
   selectedSizeInModal: string = '';
 
-  constructor(private customerHomeService: CustomerHomeService) { }
+  constructor(
+    private customerHomeService: CustomerHomeService,
+    private cartService: CartService
+  ) { }
 
   ngOnInit(): void {
     this.customerHomeService.getHomeData().subscribe(data => {
@@ -99,26 +104,20 @@ export class CustomerHomeComponent implements OnInit {
     this.selectedSizeInModal = '';
   }
 
-  orderViaWhatsApp(product: Product): void {
-    if (!this.selectedSizeInModal) {
-      alert('Please select a size before ordering.');
+  addToCart(): void {
+    if (!this.selectedProduct || !this.selectedSizeInModal) {
+      alert('Please select a size.');
       return;
     }
 
-    let message;
-    if (product.offerId) {
-      message = encodeURIComponent(
-        `Hello, I would like to order ${product.name} with selected size ${this.selectedSizeInModal} at the discounted price of ${product.discountedPrice}. Offer: ${product.offerId}`
-      );
-    } else {
-      message = encodeURIComponent(
-        `Hello, I would like to order ${product.name} with selected size ${this.selectedSizeInModal} at ${product.sellingPrice}.`
-      );
-    }
+    const cartItem: CartItem = {
+      product: this.selectedProduct,
+      size: this.selectedSizeInModal,
+      quantity: 1, // Defaulting to 1, can be extended later
+    };
 
-    // Replace the phone number with your WhatsApp number
-    const url = `https://api.whatsapp.com/send?phone=+918089325733&text=${message}`;
-    window.open(url, '_blank');
+    this.cartService.addToCart(cartItem);
     this.closeBuyModal();
+    alert('Product added to cart!'); // Optional: provide feedback to the user
   }
 }

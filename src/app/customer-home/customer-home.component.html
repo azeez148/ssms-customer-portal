@@ -32,7 +32,7 @@
             <p *ngIf="!product.offerId" class="card-text font-weight-bold">
               {{ product.sellingPrice | currency }}
             </p>
-            <button class="btn btn-primary btn-sm" (click)="openBuyModal(product)">Buy</button>
+            <button class="btn btn-primary btn-sm" (click)="openBuyModal(product)">Add to Cart</button>
           </div>
         </div>
       </div>
@@ -63,7 +63,7 @@
             <p *ngIf="!product.offerId" class="card-text font-weight-bold">
               {{ product.sellingPrice | currency }}
             </p>
-            <button class="btn btn-primary btn-sm" (click)="openBuyModal(product)">Buy</button>
+            <button class="btn btn-primary btn-sm" (click)="openBuyModal(product)">Add to Cart</button>
           </div>
         </div>
       </div>
@@ -115,7 +115,7 @@
             <p *ngIf="!product.offerId" class="card-text font-weight-bold">
               {{ product.sellingPrice | currency }}
             </p>
-            <button class="btn btn-primary mt-auto" (click)="openBuyModal(product)">Buy</button>
+            <button class="btn btn-primary mt-auto" (click)="openBuyModal(product)">Add to Cart</button>
           </div>
         </div>
       </div>
@@ -175,7 +175,7 @@
         </div>
       </div>
       <div class="modal-footer">
-         <button class="btn btn-success" (click)="orderViaWhatsApp(selectedProduct)">Order via WhatsApp</button>
+         <button class="btn btn-success" (click)="addToCart()">Add to Cart</button>
          <button class="btn btn-secondary" (click)="closeBuyModal()">Cancel</button>
       </div>
     </div>
