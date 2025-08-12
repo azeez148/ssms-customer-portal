@@ -44,9 +44,15 @@ export class CustomerHomeComponent implements OnInit {
     this.customerHomeService.getHomeData().subscribe(data => {
       this.products = data.products.filter(product => product.canListed === true);
 
-      // Populate newly added and special offer products
-      this.newlyAddedProducts = this.products.slice(0, 8);
-      this.specialOfferProducts = this.products.slice(8, 16);
+      // Populate newly added products
+      this.newlyAddedProducts = [...this.products]
+        .sort((a, b) => new Date(b.created_date).getTime() - new Date(a.created_date).getTime())
+        .slice(0, 10);
+
+      // Populate special offer products
+      this.specialOfferProducts = this.products
+        .filter(p => p.offerId)
+        .slice(0, 10);
 
       // Extract unique categories from the products
       const categoryMap = new Map<string, Category>();
