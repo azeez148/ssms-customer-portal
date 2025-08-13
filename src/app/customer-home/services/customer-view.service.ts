@@ -3,6 +3,7 @@ import { Observable, of, tap, map } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../../environment';
 import { CustomerHome } from '../data/product-model';
+import { Offer } from '../data/offer-model';
 
 @Injectable({
   providedIn: 'root'
@@ -12,6 +13,10 @@ export class CustomerHomeService {
   private apiUrl = environment.apiUrl + '/public';
 
   constructor(private http: HttpClient) {}
+
+  getOffers(): Observable<Offer[]> {
+    return this.http.get<Offer[]>(`${this.apiUrl}/offers`);
+  }
 
   getHomeData(): Observable<CustomerHome> {
     return this.http.get<CustomerHome>(`${this.apiUrl}/all`).pipe(
