@@ -11,8 +11,7 @@ import { Observable } from 'rxjs';
   selector: 'app-root',
   imports: [CommonModule, RouterOutlet, NavbarComponent, FooterComponent, CartComponent],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.css',
-  standalone: true,
+  styleUrl: './app.component.css'
 })
 export class AppComponent {
   title = 'ssms-customer-portal';

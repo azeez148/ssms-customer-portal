@@ -10,8 +10,7 @@ import { CartItem } from '../../../cart/cart.model';
   selector: 'app-navbar',
   imports: [RouterLink, RouterLinkActive, CommonModule],
   templateUrl: './navbar.component.html',
-  styleUrl: './navbar.component.css',
-  standalone: true,
+  styleUrl: './navbar.component.css'
 })
 export class NavbarComponent {
   cartItemCount$: Observable<number>;
