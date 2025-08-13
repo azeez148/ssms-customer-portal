@@ -70,6 +70,21 @@
     </div>
   </section>
 
+  <!-- Banners Section -->
+  <section class="mb-5">
+    <h2 class="section-title mb-4">Offers & Events</h2>
+    <div class="horizontal-scroll">
+      <div class="d-flex">
+        <div *ngFor="let banner of banners" class="banner-card" [ngStyle]="{'background-color': banner.backgroundColor}">
+          <div class="banner-content">
+            <h3 class="banner-title">{{ banner.offerName }}</h3>
+            <p class="banner-description">{{ banner.description }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- All Products Section -->
   <section>
     <h2 class="section-title mb-4">All Products</h2>

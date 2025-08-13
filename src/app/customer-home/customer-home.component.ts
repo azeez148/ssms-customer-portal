@@ -7,6 +7,13 @@ import { Category, Product } from './data/product-model';
 import { CartService } from '../cart/cart.service';
 import { CartItem } from '../cart/cart.model';
 
+// Define the Banner interface
+export interface Banner {
+  offerName: string;
+  description: string;
+  backgroundColor?: string;
+}
+
 @Component({
   selector: 'app-customer-home',
   templateUrl: './customer-home.component.html',
@@ -29,6 +36,9 @@ export class CustomerHomeComponent implements OnInit {
   selectedCategory: string = '';
   selectedSize: string = ''; // For size filter
   p: number = 1; // current page for pagination
+
+  // Banners for offers and events
+  banners: Banner[] = [];
 
   // Property to store the product selected for purchase
   selectedProduct: Product | null = null;
@@ -84,6 +94,39 @@ export class CustomerHomeComponent implements OnInit {
 
       this.applyFilters();
     });
+
+    this.initializeBanners();
+  }
+
+  initializeBanners(): void {
+    const bannerData = [
+      {
+        offerName: 'End of Season Sale',
+        description: 'Get up to 50% off on selected items.',
+      },
+      {
+        offerName: 'New Arrivals',
+        description: 'Check out the latest collection of sportswear.',
+      },
+      {
+        offerName: 'Flash Sale',
+        description: 'Limited time offer on all products.',
+      },
+    ];
+
+    this.banners = bannerData.map(banner => ({
+      ...banner,
+      backgroundColor: this.getRandomColor(),
+    }));
+  }
+
+  getRandomColor(): string {
+    const letters = '0123456789ABCDEF';
+    let color = '#';
+    for (let i = 0; i < 6; i++) {
+      color += letters[Math.floor(Math.random() * 16)];
+    }
+    return color;
   }
 
   applyFilters(): void {
