@@ -101,10 +101,9 @@ export class CustomerHomeComponent implements OnInit {
   }
 
   getRandomColor(): string {
-    const letters = '0123456789ABCDEF';
     let color = '#';
-    for (let i = 0; i < 6; i++) {
-      color += letters[Math.floor(Math.random() * 16)];
+    for (let i = 0; i < 3; i++) {
+      color += ('0' + Math.floor(Math.random() * 128).toString(16)).substr(-2);
     }
     return color;
   }
