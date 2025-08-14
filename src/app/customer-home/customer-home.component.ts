@@ -33,6 +33,7 @@ export class CustomerHomeComponent implements OnInit {
 
   // Banners for offers and events
   banners: Offer[] = [];
+  bannerBackgrounds: string[] = [];
 
   // Property to store the product selected for purchase
   selectedProduct: Product | null = null;
@@ -94,9 +95,18 @@ export class CustomerHomeComponent implements OnInit {
 
   loadBanners(): void {
     this.customerHomeService.getOffers().subscribe(offers => {
-      
       this.banners = offers;
+      this.bannerBackgrounds = this.banners.map(() => this.getRandomColor());
     });
+  }
+
+  getRandomColor(): string {
+    const letters = '0123456789ABCDEF';
+    let color = '#';
+    for (let i = 0; i < 6; i++) {
+      color += letters[Math.floor(Math.random() * 16)];
+    }
+    return color;
   }
 
   applyFilters(): void {
