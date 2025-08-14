@@ -14,6 +14,7 @@
     <div class="horizontal-scroll">
       <div class="d-flex">
         <div *ngFor="let banner of banners" class="banner-card">
+          {{banner}}
           <div class="banner-content">
             <h3 class="banner-title">{{ banner.name }}</h3>
             <p class="banner-description">{{ banner.description }}</p>
@@ -80,21 +81,6 @@
               {{ product.sellingPrice | currency }}
             </p>
             <button class="btn btn-primary btn-sm" (click)="openBuyModal(product)">Add to Cart</button>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Banners Section -->
-  <section class="mb-5">
-    <h2 class="section-title mb-4">Offers & Events</h2>
-    <div class="horizontal-scroll">
-      <div class="d-flex">
-        <div *ngFor="let banner of banners" class="banner-card">
-          <div class="banner-content">
-            <h3 class="banner-title">{{ banner.name }}</h3>
-            <p class="banner-description">{{ banner.description }}</p>
           </div>
         </div>
       </div>

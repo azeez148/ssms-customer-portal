@@ -94,6 +94,7 @@ export class CustomerHomeComponent implements OnInit {
 
   loadBanners(): void {
     this.customerHomeService.getOffers().subscribe(offers => {
+      
       this.banners = offers;
     });
   }
