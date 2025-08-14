@@ -8,6 +8,19 @@
 
 <div class="container my-4">
   <!-- All Products Section -->
+   <!-- Banners Section -->
+  <section class="mb-5">
+    <div>
+      <div *ngFor="let banner of banners; let i = index"
+           class="banner-card"
+           [ngStyle]="{'background-color': bannerBackgrounds[i]}">
+        <div class="banner-content">
+          <h3 class="banner-title">{{ banner.name }}</h3>
+          <p class="banner-description">{{ banner.description }}</p>
+        </div>
+      </div>
+    </div>
+  </section>
   <section>
     <h2 class="section-title mb-4">Products on Sale</h2>
     <!-- Filter Section -->

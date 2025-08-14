@@ -6,6 +6,7 @@ import { CustomerHomeService } from '../../customer-home/services/customer-view.
 import { Category, Product } from '../../customer-home/data/product-model';
 import { CartService } from '../../cart/cart.service';
 import { CartItem } from '../../cart/cart.model';
+import { Offer } from '../../customer-home/data/offer-model';
 
 @Component({
   selector: 'app-sale',
@@ -32,6 +33,10 @@ export class SaleComponent implements OnInit {
   selectedProduct: Product | null = null;
   // Renamed for clarity, this is for the size selection in the modal
   selectedSizeInModal: string = '';
+
+    // Banners for offers and events
+    banners: Offer[] = [];
+    bannerBackgrounds: string[] = [];
 
   constructor(
     private customerHomeService: CustomerHomeService,
@@ -72,7 +77,24 @@ export class SaleComponent implements OnInit {
       this.sizes = Array.from(sizeSet).sort();
 
       this.applyFilters();
+
     });
+    this.loadBanners();
+  }
+
+   loadBanners(): void {
+    this.customerHomeService.getOffers().subscribe(offers => {
+      this.banners = offers;
+      this.bannerBackgrounds = this.banners.map(() => this.getRandomColor());
+    });
+  }
+
+  getRandomColor(): string {
+    let color = '#';
+    for (let i = 0; i < 3; i++) {
+      color += ('0' + Math.floor(Math.random() * 128).toString(16)).substr(-2);
+    }
+    return color;
   }
 
   applyFilters(): void {
