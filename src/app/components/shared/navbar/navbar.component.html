@@ -11,10 +11,19 @@
           <a class="nav-link" routerLink="/" routerLinkActive="activebutton" ariaCurrentWhenActive="page">Home</a>
         </li>
         <li class="nav-item">
+          <a class="nav-link" routerLink="/sale" routerLinkActive="activebutton" ariaCurrentWhenActive="page">Sale</a>
+        </li>
+        <li class="nav-item">
           <a class="nav-link" routerLink="/about" routerLinkActive="activebutton" ariaCurrentWhenActive="page">About</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" routerLink="/contact" routerLinkActive="activebutton" ariaCurrentWhenActive="page">Contact</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" (click)="toggleCart()" style="cursor: pointer;">
+            <i class="material-icons">shopping_cart</i>
+            <span class="badge badge-pill badge-danger" *ngIf="cartItemCount$ | async as count">{{ count }}</span>
+          </a>
         </li>
       </ul>
     </div>

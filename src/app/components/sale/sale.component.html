@@ -1,16 +1,15 @@
 <!-- Hero Section -->
 <div class="hero-section text-center text-white bg-dark py-5">
   <div class="container">
-    <h1 class="display-4">Welcome to ADrenaline Sports Store</h1>
-    <p class="lead">Your one-stop shop for all your sporting needs.</p>
+    <h1 class="display-4">Sale</h1>
+    <p class="lead">Check out our products on sale!</p>
   </div>
 </div>
 
 <div class="container my-4">
-
-  <!-- Banners Section -->
+  <!-- All Products Section -->
+   <!-- Banners Section -->
   <section class="mb-5">
-    <h2 class="section-title mb-4">Offers & Events</h2>
     <div>
       <div *ngFor="let banner of banners; let i = index"
            class="banner-card"
@@ -22,73 +21,8 @@
       </div>
     </div>
   </section>
-  
-  <!-- Newly Added Section -->
-  <section class="mb-5">
-    <h2 class="section-title mb-4">Newly Added</h2>
-    <div class="horizontal-scroll">
-      <div class="d-flex">
-        <div *ngFor="let product of newlyAddedProducts" class="card product-card-horizontal mr-3">
-          <img [src]="product.imageUrl" class="card-img-top" alt="{{ product.name }}">
-          <div class="card-body">
-            <h5 class="card-title">{{ product.name }}</h5>
-            <div *ngIf="product.offerId">
-              <p class="card-text text-danger">
-               <span>{{ product.offerName }}</span>
-
-              </p>
-              <p class="card-text font-weight-bold">
-                <del>{{ product.sellingPrice | currency }}</del>
-                <strong>{{ product.discountedPrice | currency }}</strong>
-              </p>
-              <p class="card-text">
-                <small class="text-muted">Offer Price: {{ product.offerPrice | currency }}</small>
-              </p>
-            </div>
-            <p *ngIf="!product.offerId" class="card-text font-weight-bold">
-              {{ product.sellingPrice | currency }}
-            </p>
-            <button class="btn btn-primary btn-sm" (click)="openBuyModal(product)">Add to Cart</button>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Special Offers Section -->
-  <section class="mb-5">
-    <h2 class="section-title mb-4">Special Offers</h2>
-    <div class="horizontal-scroll">
-      <div class="d-flex">
-        <div *ngFor="let product of specialOfferProducts" class="card product-card-horizontal mr-3">
-          <img [src]="product.imageUrl" class="card-img-top" alt="{{ product.name }}">
-          <div class="card-body">
-            <h5 class="card-title">{{ product.name }}</h5>
-            <div *ngIf="product.offerId">
-              <p class="card-text text-danger">
-                <span>{{ product.offerName }}</span>
-              </p>
-              <p class="card-text font-weight-bold">
-                <del>{{ product.sellingPrice | currency }}</del>
-                <strong>{{ product.discountedPrice | currency }}</strong>
-              </p>
-              <p class="card-text">
-                <small class="text-muted">Offer Price: {{ product.offerPrice | currency }}</small>
-              </p>
-            </div>
-            <p *ngIf="!product.offerId" class="card-text font-weight-bold">
-              {{ product.sellingPrice | currency }}
-            </p>
-            <button class="btn btn-primary btn-sm" (click)="openBuyModal(product)">Add to Cart</button>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- All Products Section -->
   <section>
-    <h2 class="section-title mb-4">All Products</h2>
+    <h2 class="section-title mb-4">Products on Sale</h2>
     <!-- Filter Section -->
     <div class="row mb-4">
       <div class="col-md-4 mb-2">
