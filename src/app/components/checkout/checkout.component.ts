@@ -14,6 +14,7 @@ import { take } from 'rxjs';
 })
 export class CheckoutComponent {
   name: string = '';
+  mobileNumber: string = '';
   address: string = '';
   city: string = '';
   state: string = '';
@@ -42,6 +43,7 @@ export class CheckoutComponent {
       message += `\nTotal Price: ${totalPrice.toFixed(2)}\n\n`;
       message += `Customer Details:\n`;
       message += `Name: ${this.name}\n`;
+      message += `Mobile: ${this.mobileNumber}\n`;
       message += `Address: ${this.address}, ${this.city}, ${this.state} - ${this.zip}\n`;
 
 
