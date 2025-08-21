@@ -6,7 +6,7 @@
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav ml-auto">
+      <ul class="navbar-nav me-auto">
         <li class="nav-item">
           <a class="nav-link" routerLink="/" routerLinkActive="activebutton" ariaCurrentWhenActive="page">Home</a>
         </li>
@@ -19,13 +19,13 @@
         <li class="nav-item">
           <a class="nav-link" routerLink="/contact" routerLinkActive="activebutton" ariaCurrentWhenActive="page">Contact</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" (click)="toggleCart()" style="cursor: pointer;">
+      </ul>
+    </div>
+    <div class="d-flex">
+        <a class="nav-link" (click)="toggleCart()" style="cursor: pointer; color: white;">
             <i class="material-icons">shopping_cart</i>
             <span class="badge badge-pill badge-danger" *ngIf="cartItemCount$ | async as count">{{ count }}</span>
-          </a>
-        </li>
-      </ul>
+        </a>
     </div>
   </div>
 </nav>
