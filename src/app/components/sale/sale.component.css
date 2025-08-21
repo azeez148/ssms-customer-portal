@@ -91,6 +91,24 @@
   .product-card-horizontal {
     width: 200px;
   }
+
+  .banner-card {
+    height: 150px;
+  }
+
+  .banner-title {
+    font-size: 1.5rem;
+  }
+
+  .banner-description {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .product-card-horizontal {
+    width: 180px;
+  }
 }
 
 /* Banners Section */

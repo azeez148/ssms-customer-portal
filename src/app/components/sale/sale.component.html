@@ -40,6 +40,13 @@
           <option *ngFor="let size of sizes" [value]="size">{{ size }}</option>
         </select>
       </div>
+      <div class="col-md-4 mb-2">
+        <select class="form-control" [(ngModel)]="sortOrder" (ngModelChange)="applyFilters()">
+          <option value="">Sort by</option>
+          <option value="price-asc">Price: Low to High</option>
+          <option value="price-desc">Price: High to Low</option>
+        </select>
+      </div>
     </div>
 
     <!-- Products Grid with Pagination -->

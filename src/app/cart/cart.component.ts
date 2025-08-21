@@ -4,6 +4,7 @@ import { CartService } from './cart.service';
 import { CartItem } from './cart.model';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-cart',
@@ -16,7 +17,7 @@ export class CartComponent implements OnInit {
   cartItems$: Observable<CartItem[]>;
   totalPrice$: Observable<number>;
 
-  constructor(private cartService: CartService) {
+  constructor(private cartService: CartService, private router: Router) {
     this.cartItems$ = this.cartService.items$;
     this.totalPrice$ = this.cartItems$.pipe(
       map(items => items.reduce((acc, item) => {
@@ -35,7 +36,8 @@ export class CartComponent implements OnInit {
   }
 
   checkout(): void {
-    this.cartService.checkoutViaWhatsApp();
+    this.router.navigate(['/checkout']);
+    this.cartService.hideCart();
   }
 
   closeCart(): void {

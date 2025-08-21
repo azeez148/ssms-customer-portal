@@ -44,30 +44,4 @@ export class CartService {
     this.cartVisibleSubject.next(false);
   }
 
-  checkoutViaWhatsApp() {
-    const items = this.itemsSubject.getValue();
-    if (items.length === 0) {
-      alert('Your cart is empty.');
-      return;
-    }
-
-    const totalPrice = items.reduce((acc, item) => {
-      const price = item.product.discountedPrice || item.product.sellingPrice;
-      return acc + (price * item.quantity);
-    }, 0);
-
-    let message = 'Hello, I would like to order the following items:\n\n';
-    items.forEach(item => {
-      const price = item.product.discountedPrice || item.product.sellingPrice;
-      message += `- ${item.product.name} (Size: ${item.size}, Quantity: ${item.quantity}) - ${price.toFixed(2)}\n`;
-    });
-
-    message += `\nTotal Price: ${totalPrice.toFixed(2)}`;
-
-    const encodedMessage = encodeURIComponent(message);
-    const url = `https://api.whatsapp.com/send?phone=+918089325733&text=${encodedMessage}`;
-    window.open(url, '_blank');
-    this.clearCart();
-    this.hideCart();
-  }
 }
