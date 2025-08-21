@@ -29,6 +29,7 @@ export class CustomerHomeComponent implements OnInit {
   searchName: string = '';
   selectedCategory: string = '';
   selectedSize: string = ''; // For size filter
+  sortOrder: string = ''; // For sorting
   p: number = 1; // current page for pagination
 
   // Banners for offers and events
@@ -119,6 +120,14 @@ export class CustomerHomeComponent implements OnInit {
         : true;
       return matchName && matchCategory && matchSize;
     });
+
+    // Apply sorting
+    if (this.sortOrder === 'price-asc') {
+      this.filteredProducts.sort((a, b) => (a.discountedPrice || a.sellingPrice) - (b.discountedPrice || b.sellingPrice));
+    } else if (this.sortOrder === 'price-desc') {
+      this.filteredProducts.sort((a, b) => (b.discountedPrice || b.sellingPrice) - (a.discountedPrice || a.sellingPrice));
+    }
+
     this.p = 1; // reset pagination when filters change
   }
 
